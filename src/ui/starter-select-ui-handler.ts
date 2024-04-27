@@ -741,8 +741,25 @@ export default class StarterSelectUiHandler extends MessageUiHandler {
                 ui.setMode(Mode.STARTER_SELECT);
                 return true;
               }
-            }
+            },
           ];
+          options.push({
+            label: this.lastSpecies.name === this.lastSpecies.nickname ? 
+            'Add Nickname' : 'Change Name',
+            handler: () => {
+              ui.setModeWithoutClear(Mode.STARTER_SELECT).then(() => {
+                ui.showText(`Give a nickname to the ${this.lastSpecies.name}?`, null, () =>{
+                  console.log(`i made it mom`)
+                  ui.setMode(Mode.CONFIRM, () => {
+                    
+                  }, () => {
+
+                  })
+                })
+              })
+              return true;
+            }
+          });
           if (this.speciesStarterMoves.length > 1) {
             const showSwapOptions = (moveset: StarterMoveset) => {
               ui.setMode(Mode.STARTER_SELECT).then(() => {
@@ -1202,7 +1219,7 @@ export default class StarterSelectUiHandler extends MessageUiHandler {
 
     if (species && (this.speciesStarterDexEntry?.seenAttr || this.speciesStarterDexEntry?.caughtAttr)) {
       this.pokemonNumberText.setText(Utils.padInt(species.speciesId, 4));
-      this.pokemonNameText.setText(species.name);
+      this.pokemonNameText.setText(species.nickname || species.name);
 
       if (this.speciesStarterDexEntry?.caughtAttr) {
         const colorScheme = starterColors[species.speciesId];

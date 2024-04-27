@@ -435,6 +435,7 @@ export abstract class PokemonSpeciesForm {
 
 export default class PokemonSpecies extends PokemonSpeciesForm {
   public name: string;
+  public nickname?: string;
   public pseudoLegendary: boolean;
   public legendary: boolean;
   public mythical: boolean;
@@ -465,7 +466,7 @@ export default class PokemonSpecies extends PokemonSpeciesForm {
     this.genderDiffs = genderDiffs;
     this.canChangeForm = !!canChangeForm;
     this.forms = forms;
-
+    this.nickname = '';
     forms.forEach((form, f) => {
       form.speciesId = id;
       form.formIndex = f;

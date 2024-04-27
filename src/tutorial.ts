@@ -40,6 +40,7 @@ const tutorialHandlers = {
     return new Promise<void>(resolve => {
       scene.ui.showText(`From this screen, you can select your starters.\nThese are your initial party members.
                         $Each starter has a value. Your party can have up to\n6 members as long as the total does not exceed 10.
+                        $You can give each of your starters a nickname.
                         $You can also select gender, ability, and form depending on\nthe variants you've caught or hatched.
                         $The IVs for a species are also the best of every one you've\ncaught or hatched, so try to get lots of the same species!`, null, () => scene.ui.showText('', null, () => resolve()), null, true);
     });
